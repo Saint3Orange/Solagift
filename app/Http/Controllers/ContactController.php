@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller {
 
+    public function index(){
+
+        return view('contactPrice');
+
+    }
+
+    public function showView(){
+
+        return view('contactPhone');
+
+    }
+
     public function send(PriceRequest $request)
     {
         if ($request->method() == 'POST') {
@@ -23,8 +35,10 @@ class ContactController extends Controller {
         }
 
         Mail::to('mmvipstomsk@gmail.com')->send(new PriceMail($textMail));
-        return view('send');
-
+        return response()->json([
+            "status" => true,
+            "request" => $request->only('name', 'city', 'namecom', 'position', 'email', 'phone')
+        ])->setStatusCode(201, 'email sent');
     }
 
     public function store(PhoneRequest $request)
@@ -37,8 +51,10 @@ class ContactController extends Controller {
                     }
 
         Mail::to('mmvipstomsk@gmail.com')->send(new PhoneMail($textMail));
-        return view('send');
-
+        return response()->json([
+            "status" => true,
+            "request" => $request->only('namecom', 'name', 'phone', 'time')
+        ])->setStatusCode(201, 'email sent');
     }
 
 }

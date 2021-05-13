@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
+
+Route::get('/contact/price', [ContactController::class,'index']);
+Route::get('/contact/phone', [ContactController::class,'showView']);
+Route::post('/contact/price/send', [ContactController::class,'send'])->name('send_mail_price');
+Route::post('/contact/phone/send', [ContactController::class,'store'])->name('send_mail_phone');

@@ -3,17 +3,7 @@
 @section('content')
     <h1>Отправление заявки на обратный звонок</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="/contact/phone/send" method="post">
+    <form action={{route('send_mail_phone')}} method="post">
         @csrf
 
         <div class="form-group">

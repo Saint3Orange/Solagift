@@ -21,15 +21,16 @@ class PriceRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
         return [
-            'name' => 'required|min:4|max:50',
-            'city' => 'required|min:4|max:50',
-            'namecom' => 'required|min:4|max:50',
-            'position' => 'required|max:16',
-            'email' => 'required|email|min:9|max:60',
-            'phone' => 'required|min:1|max:20'
+            'name' => 'required|min:1|max:256|regex:/[А-Яа-яЁёa-z]/u',
+            'city' => 'required|min:1|max:35|regex:/[А-Яа-яЁёa-z]/u',
+            'namecom' => 'required|min:1|max:256|regex:/[А-Яа-яЁёa-z]/u',
+            'position' => 'required|min:2|max:256|regex:/[А-Яа-яЁё]/u',
+            'email' => 'required|email|min:9|max:256|regex:/[a-z]/u',
+            'phone' => 'required|min:6|max:14|regex:/[0-9+]/u'
         ];
     }
 

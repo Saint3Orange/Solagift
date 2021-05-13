@@ -24,18 +24,18 @@ class PhoneRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4|max:50',
-            'namecom' => 'required|min:4|max:50',
-            'phone' => 'required|min:1|max:20',
-            'time' => 'required|min:1|max:20'
+            'namecom' => 'required|min:1|max:256|regex:/[А-Яа-яЁёa-z]/u',
+            'name' => 'required|min:1|max:256|regex:/[А-Яа-яЁёa-z]/u',
+            'phone' => 'required|min:6|max:14|regex:/[0-9+]/u',
+            'time' => 'required|min:2|max:160|regex:/[0-9]/u'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Введите ФИО',
             'namecom.required' => 'Введите название компании',
+            'name.required' => 'Введите ФИО',
             'phone.required' => 'Введите телефон',
             'time.required' => 'Введите время обратного звонка'
         ];
